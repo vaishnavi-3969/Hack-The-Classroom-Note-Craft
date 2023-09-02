@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaMoon, FaLightbulb, FaUser, FaBook, FaSignOutAlt, FaProjectDiagram, FaPencilAlt, FaBookOpen, FaChalkboard, FaBoxes, FaCheck } from 'react-icons/fa';
+import { FaMoon, FaLightbulb, FaSignOutAlt, FaUser, FaBook, FaProjectDiagram, FaPencilAlt, FaBookOpen, FaChalkboard, FaBoxes, FaCheck } from 'react-icons/fa';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 
@@ -18,16 +18,13 @@ const HomePage = () => {
     { icon: <FaPencilAlt />, text: 'Diagrams', link: '/projects' },
     { icon: <FaBookOpen />, text: 'Sticky Notes', link: '/sticky_notes' },
     { icon: <FaChalkboard />, text: 'Whiteboard', link: '/projects' },
-    { icon: <FaBoxes />, text: 'Notes Template Libary', link: '/projects' },
+    { icon: <FaBoxes />, text: 'Notes Template Library', link: '/projects' },
     { icon: <FaCheck />, text: 'To Dos', link: '/todo' },
   ];
 
-  const backgroundStyle = {
-    background: `linear-gradient(45deg, #FF6B6B, #FFE66D, #8A3AB9)`,
-  };
 
   return (
-    <div style={backgroundStyle} className={`bg-${isDarkMode ? 'gray-900' : 'white'} min-h-screen text-${isDarkMode ? 'white' : 'gray-900'} transition duration-500 ease-in-out relative p-10`}>
+    <div className={`bg-${isDarkMode ? 'gray-900' : ''} min-h-screen text-${isDarkMode ? 'white' : 'gray-900'} transition duration-500 ease-in-out relative p-10`}>
       <div className="flex flex-col justify-between h-full relative z-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -44,14 +41,14 @@ const HomePage = () => {
             </button>
             {isAuthenticated && (
               <Link to="/profile">
-              <div className="flex items-center">
-                <img
-                  src={user.picture}
-                  alt={user.name}
-                  className="w-8 h-8 rounded-full mr-2"
-                />
-                <span className={`text-sm ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{user.name}</span>
-              </div>
+                <div className="flex items-center">
+                  <img
+                    src={user.picture}
+                    alt={user.name}
+                    className="w-8 h-8 rounded-full mr-2"
+                  />
+                  <span className={`text-sm ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{user.name}</span>
+                </div>
               </Link>
             )}
           </div>
@@ -63,6 +60,9 @@ const HomePage = () => {
           >
             Welcome to Note Craft
           </motion.h1>
+          <p className={`mt-4 text-lg ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+            Your all-in-one platform for notes, projects, diagrams, sticky notes, and more. Stay organized and boost productivity with Note Craft.
+          </p>
         </motion.div>
 
         <div className="mt-8 space-y-4">

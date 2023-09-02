@@ -40,21 +40,12 @@ const LandingPage = () => {
     },
   ];
 
-  const backgroundStyle = {
-    background: `linear-gradient(45deg, #FF6B6B, #FFE66D, #8A3AB9)`,
-  };
-
   const handleLogin = () => {
     loginWithRedirect();
   };
 
-  const handleRedirectToHomepage = () => {
-    window.location.href = '/homepage';
-  };
-
   return (
-    <div style={backgroundStyle} className={`bg-${isDarkMode ? 'gray-900' : 'white'} h-screen text-${isDarkMode ? 'white' : 'gray-900'} transition duration-500 ease-in-out relative`}>
-
+    <div className={`bg-${isDarkMode ? 'gray-900' : 'white'} h-screen text-${isDarkMode ? 'white' : 'gray-900'} transition duration-500 ease-in-out relative`}>
       <div className="flex flex-col justify-center items-center h-full relative z-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
