@@ -45,7 +45,7 @@ const LandingPage = () => {
   };
 
   return (
-    <div className={`bg-${isDarkMode ? 'gray-900' : 'white'} h-screen text-${isDarkMode ? 'white' : 'gray-900'} transition duration-500 ease-in-out relative`}>
+    <div className={`bg-${isDarkMode ? 'gray-900' : ''} h-screen text-${isDarkMode ? 'white' : 'gray-900'} transition duration-500 ease-in-out relative`}>
       <div className="flex flex-col justify-center items-center h-full relative z-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
