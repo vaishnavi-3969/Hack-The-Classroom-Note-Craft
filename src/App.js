@@ -4,6 +4,8 @@ import HomePage from "./pages/HomePage";
 import { useAuth0 } from "@auth0/auth0-react";
 import StickyNotes from "./pages/StickyNotes";
 import Navbar from "./components/Navbar";
+import TodoList from "./pages/ToDoList";
+import Notebook from "./pages/Notebook";
 
 const backgroundStyle = {
   background: `linear-gradient(45deg, #FF6B6B, #FFE66D, #8A3AB9)`,
@@ -25,6 +27,8 @@ function App() {
           />
           <Route path="/homepage" element={<HomePage />} exact />
           <Route path="sticky_notes" element={<StickyNotes/>} exact/>
+          <Route path="/todo" element={<TodoList/>} exact/>
+          <Route path="/notebooks" element={<Notebook/>} exact/>
         </Routes>
       </BrowserRouter>
     </div>
