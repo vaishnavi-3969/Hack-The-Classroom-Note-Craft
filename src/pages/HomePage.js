@@ -61,7 +61,7 @@ const HomePage = () => {
             transition={{ delay: 0.5 }}
             className={`text-4xl font-bold mt-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
           >
-            Welcome to Notedly
+            Welcome to Note Craft
           </motion.h1>
         </motion.div>
 

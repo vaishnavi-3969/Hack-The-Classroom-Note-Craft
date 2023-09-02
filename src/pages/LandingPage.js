@@ -76,7 +76,7 @@ const LandingPage = () => {
             transition={{ delay: 0.5 }}
             className={`text-4xl font-bold mt-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
           >
-            Welcome to Notedly
+            Welcome to Note Craft
           </motion.h1>
           <p className={`text-lg mb-8 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
             Your ultimate note-taking and collaboration platform.
