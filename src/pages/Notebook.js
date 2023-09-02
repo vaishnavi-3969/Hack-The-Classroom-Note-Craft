@@ -1,87 +1,87 @@
 import React, { useState } from 'react';
+import { FaPlus } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import Book from '../components/Notebook/Book';
 
 const Notebook = () => {
-  const [books, setBooks] = useState([]);
-  const [selectedBook, setSelectedBook] = useState(null);
-  const [selectedPage, setSelectedPage] = useState(null);
+  const [notes, setNotes] = useState([]);
+  const [selectedNote, setSelectedNote] = useState(null);
   const [editorContent, setEditorContent] = useState('');
-  const [editorOpen, setEditorOpen] = useState(false);
+  const [isEditorOpen, setIsEditorOpen] = useState(false);
 
-  const addBook = () => {
-    const newBook = {
+  const addNote = () => {
+    const newNote = {
       id: Date.now(),
-      pages: [],
+      title: 'New Note',
+      content: '',
     };
-    setBooks([...books, newBook]);
+    setNotes([...notes, newNote]);
   };
 
-  const addPage = () => {
-    if (selectedBook) {
-      const newPage = {
-        id: Date.now(),
-        content: '',
-      };
-      const updatedBook = { ...selectedBook, pages: [...selectedBook.pages, newPage] };
-      setBooks(books.map((book) => (book.id === selectedBook.id ? updatedBook : book)));
-    }
+  const selectNote = (note) => {
+    setSelectedNote(note);
+    setEditorContent(note.content);
+    setIsEditorOpen(true);
   };
 
-  const handleEditorOpen = (pageId) => {
-    setEditorOpen(true);
-    if (selectedBook) {
-      const page = selectedBook.pages.find((page) => page.id === pageId);
-      if (page) {
-        setEditorContent(page.content || '');
-        setSelectedPage(page);
-      }
-    }
-  };
-  
-
-  const handleEditorClose = () => {
-    setEditorOpen(false);
-  };
-
-  const handlePageContentChange = (content) => {
-    if (selectedPage) {
-      setSelectedPage({ ...selectedPage, content });
-      const updatedPages = selectedBook.pages.map((page) =>
-        page.id === selectedPage.id ? { ...page, content } : page
+  const updateNoteContent = (content) => {
+    if (selectedNote) {
+      const updatedNotes = notes.map((note) =>
+        note.id === selectedNote.id ? { ...note, content } : note
       );
-      const updatedBook = { ...selectedBook, pages: updatedPages };
-      setBooks(books.map((book) => (book.id === selectedBook.id ? updatedBook : book)));
+      setNotes(updatedNotes);
+      setEditorContent(content);
     }
-  };
-  const openEditor = (pageId) => {
-    handleEditorOpen(pageId);
   };
 
   return (
-    <div>
-      <h1>Notebook</h1>
-      <button onClick={addBook}>Add Book</button>
-      <div className="books-container">
-        {books.map((book) => (
-          <Book
-            key={book.id}
-            book={book}
-            selectedBook={selectedBook}
-            setSelectedBook={setSelectedBook}
-            selectedPage={selectedPage}
-            setSelectedPage={setSelectedPage}
-            openEditor={() => handleEditorOpen(book.id)} // Pass the book.id as pageId
-          />
-
-        ))}
+    <div className="bg-gray-100 min-h-screen flex flex-col">
+      <header className="bg-blue-500 py-4 text-white text-center text-2xl font-semibold">
+        Notebook
+      </header>
+      <div className="flex-1 container mx-auto p-4 mt-8">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-semibold">Notes</h2>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={addNote}
+            className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-full flex items-center"
+          >
+            <FaPlus className="mr-1" />
+            Create New Note
+          </motion.button>
+        </div>
+        <div className="grid grid-cols-3 gap-4">
+          {notes.map((note) => (
+            <motion.div
+              key={note.id}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => selectNote(note)}
+              className={`p-4 bg-white border rounded-lg cursor-pointer ${
+                selectedNote?.id === note.id ? 'border-blue-500 shadow-lg' : 'border-gray-200'
+              }`}
+            >
+              <h3 className="text-lg font-semibold">{note.title}</h3>
+              <p className="text-gray-500">{note.content}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
-      {selectedPage && (
-        <div>
-          <h2>Editor</h2>
-          <ReactQuill value={editorContent} onChange={handlePageContentChange} />
-          <button onClick={handleEditorClose}>Close Editor</button>
+      {isEditorOpen && (
+        <div className="bg-white p-4 fixed bottom-0 right-0 left-0">
+          <div className="mb-4">
+            <h2 className="text-lg font-semibold">Edit Note</h2>
+            <button
+              onClick={() => setIsEditorOpen(false)}
+              className="text-blue-500 hover:underline cursor-pointer"
+            >
+              Close Editor
+            </button>
+          </div>
+          <ReactQuill value={editorContent} onChange={updateNoteContent} />
         </div>
       )}
     </div>
