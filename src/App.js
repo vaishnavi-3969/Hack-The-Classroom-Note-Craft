@@ -11,6 +11,7 @@ import ProjectDetail from "./components/projects/ProjectDetails";
 import Whiteboard from "./pages/Whiteboard";
 import Diagram from "./pages/Diagram";
 import NotesTemplate from "./pages/NotesTemplate";
+import Profile from "./pages/Profile";
 
 const backgroundStyle = {
   background: `linear-gradient(45deg, #FF6B6B, #FFE66D, #8A3AB9)`,
@@ -30,6 +31,7 @@ function App() {
             element={isAuthenticated ? <Navigate to="/homepage" /> : <LandingPage />}
             exact
           />
+          <Route path="/profile" element={<Profile />} exact/>
           <Route path="/homepage" element={<HomePage />} exact />
           <Route path="sticky_notes" element={<StickyNotes />} exact />
           <Route path="/todo" element={<TodoList />} exact />
