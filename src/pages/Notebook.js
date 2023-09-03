@@ -3,6 +3,7 @@ import { FaPlus, FaPencilAlt, FaTimes } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import close from '../assets/x-close.png';
 
 const Notebook = () => {
   const [notes, setNotes] = useState([]);
@@ -95,10 +96,10 @@ const Notebook = () => {
               onClick={() => setIsEditorOpen(false)}
               className="text-blue-500 hover:underline cursor-pointer"
             >
-              Close Editor
+             <img src={close} alt='close'/>
             </button>
           </div>
-          <div className='p-10'>
+          <div className='p-1'>
           <ReactQuill value={editorContent} onChange={updateNoteContent} />
           </div>
         </div>

@@ -6,6 +6,8 @@ import StickyNotes from "./pages/StickyNotes";
 import Navbar from "./components/Navbar";
 import TodoList from "./pages/ToDoList";
 import Notebook from "./pages/Notebook";
+import Projects from "./pages/Projects";
+import ProjectDetail from "./components/projects/ProjectDetails";
 
 const backgroundStyle = {
   background: `linear-gradient(45deg, #FF6B6B, #FFE66D, #8A3AB9)`,
@@ -29,6 +31,8 @@ function App() {
           <Route path="sticky_notes" element={<StickyNotes/>} exact/>
           <Route path="/todo" element={<TodoList/>} exact/>
           <Route path="/notebooks" element={<Notebook/>} exact/>
+          <Route path="/projects" element={<Projects/>} exact/>
+          <Route path="/project/:projectId" element={<ProjectDetail />} />
         </Routes>
       </BrowserRouter>
     </div>

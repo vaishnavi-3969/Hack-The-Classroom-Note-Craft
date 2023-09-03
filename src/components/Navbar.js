@@ -41,16 +41,16 @@ const Navbar = () => {
             <Link to="/projects">
                 <FaProjectDiagram style={iconStyle} />
             </Link>
-            <Link to="/sticky_notes">
+            <Link to="/diagram">
                 <FaPencilAlt style={iconStyle} />
             </Link>
             <Link to="/sticky_notes">
                 <FaBookOpen style={iconStyle} />
             </Link>
-            <Link to="/projects">
+            <Link to="/whiteboard">
                 <FaChalkboard style={iconStyle} />
             </Link>
-            <Link to="/projects">
+            <Link to="/notes_template_library">
                 <FaBoxes style={iconStyle} />
             </Link>
             <Link to="/todo">
