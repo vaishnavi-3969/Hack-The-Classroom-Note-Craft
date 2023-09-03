@@ -64,20 +64,17 @@ const TodoList = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.2 }}
-              className={`flex items-center ${
-                task.completed ? 'text-green-500' : ''
-              }`}
+              className={`flex items-center ${task.completed ? 'text-green-500' : ''
+                }`}
             >
               <FaCheckCircle
                 onClick={() => toggleCompletion(task.id)}
-                className={`cursor-pointer mr-2 ${
-                  task.completed ? 'text-green-500' : 'text-gray-300'
-                }`}
+                className={`cursor-pointer mr-2 ${task.completed ? 'text-green-500' : 'text-gray-300'
+                  }`}
               />
               <p
-                className={`flex-grow ${
-                  task.completed ? 'line-through' : ''
-                }`}
+                className={`flex-grow ${task.completed ? 'line-through' : ''
+                  }`}
               >
                 {task.text}
               </p>

@@ -4,14 +4,12 @@ import Outlining from '../assets/outline-method.png';
 import Mapping from '../assets/mappingmethod.png';
 import Charting from '../assets/charting.png';
 
-
-
 const NoteTakingMethods = () => {
-  const methods = [
-    {
-      title: "The Cornell Method",
-      image: Cornell,
-      content: `
+    const methods = [
+        {
+            title: "The Cornell Method",
+            image: Cornell,
+            content: `
 # The Cornell Method
 
 ## Overview
@@ -28,11 +26,11 @@ The Cornell Method is a systematic approach to taking notes during lectures or w
 - Encourages active engagement during note-taking.
 - Easily find and review key points.
 `,
-    },
-    {
-      title: "The Outlining Method",
-      image: Outlining,
-      content: `
+        },
+        {
+            title: "The Outlining Method",
+            image: Outlining,
+            content: `
 # The Outlining Method
 
 ## Overview
@@ -48,11 +46,11 @@ The Outlining Method is a structured way of taking notes, using indentation to s
 - Easily identify the hierarchy of ideas.
 - Simplifies complex topics.
 `,
-    },
-    {
-      title: "The Mapping Method",
-      image: Mapping,
-      content: `
+        },
+        {
+            title: "The Mapping Method",
+            image: Mapping,
+            content: `
 # The Mapping Method
 
 ## Overview
@@ -68,11 +66,11 @@ The Mapping Method uses visual diagrams to represent information. It's ideal for
 - Easily grasp the big picture of a topic.
 - Show connections and relationships visually.
 `,
-    },
-    {
-      title: "The Charting Method",
-      image: Charting,
-      content: `
+        },
+        {
+            title: "The Charting Method",
+            image: Charting,
+            content: `
 # The Charting Method
 
 ## Overview
@@ -88,29 +86,29 @@ The Charting Method involves creating tables or charts to organize information. 
 - Clear and structured representation.
 - Simplifies complex information.
 `,
-    },
-  ];
+        },
+    ];
 
-  return (
-    <div className="min-h-screen p-6">
-      <h1 className="text-3xl font-semibold text-center mb-8">Note-Taking Templates</h1>
-      <p>Click to create copy</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
-        {methods.map((method, index) => (
-          <div key={index} className="rounded-lg shadow-md p-4 bg-white">
-            <img
-              src={method.image}
-              alt={method.title}
-              className="rounded-lg mb-4"
-              style={{ maxWidth: "100%", maxHeight: "200px", objectFit: "cover" }}
-            />
-            <h2 className="text-xl font-semibold mb-2">{method.title}</h2>
-            <div className="markdown">{method.content}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+    return (
+        <div className="min-h-screen p-6">
+            <h1 className="text-3xl font-semibold text-center mb-8">Note-Taking Templates</h1>
+            <p>Click to create copy</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+                {methods.map((method, index) => (
+                    <div key={index} className="rounded-lg shadow-md p-4 bg-white">
+                        <img
+                            src={method.image}
+                            alt={method.title}
+                            className="rounded-lg mb-4"
+                            style={{ maxWidth: "100%", maxHeight: "200px", objectFit: "cover" }}
+                        />
+                        <h2 className="text-xl font-semibold mb-2">{method.title}</h2>
+                        <div className="markdown">{method.content}</div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 };
 
 export default NoteTakingMethods;

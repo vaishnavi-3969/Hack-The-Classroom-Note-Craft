@@ -22,7 +22,6 @@ const HomePage = () => {
     { icon: <FaCheck />, text: 'To Dos', link: '/todo' },
   ];
 
-
   return (
     <div className={`bg-${isDarkMode ? 'gray-900' : ''} min-h-screen text-${isDarkMode ? 'white' : 'gray-900'} transition duration-500 ease-in-out relative p-10`}>
       <div className="flex flex-col justify-between h-full relative z-10">

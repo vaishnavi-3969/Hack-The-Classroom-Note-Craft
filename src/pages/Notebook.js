@@ -63,11 +63,10 @@ const Notebook = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => selectNote(note)}
-              className={`p-4 border rounded-lg cursor-pointer ${
-                selectedNote?.id === note.id
+              className={`p-4 border rounded-lg cursor-pointer ${selectedNote?.id === note.id
                   ? 'border-blue-500 shadow-lg'
                   : 'border-gray-200'
-              }`}
+                }`}
             >
               <div className="flex justify-between items-center">
                 <h3 className="text-xl font-semibold text-gray-800">{note.title}</h3>
@@ -96,11 +95,11 @@ const Notebook = () => {
               onClick={() => setIsEditorOpen(false)}
               className="text-blue-500 hover:underline cursor-pointer"
             >
-             <img src={close} alt='close'/>
+              <img src={close} alt='close' />
             </button>
           </div>
           <div className='p-1'>
-          <ReactQuill value={editorContent} onChange={updateNoteContent} />
+            <ReactQuill value={editorContent} onChange={updateNoteContent} />
           </div>
         </div>
       )}
