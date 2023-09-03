@@ -1,88 +1,159 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { Stage, Layer, Rect, Circle, Text, Transformer } from 'react-konva';
+import { FaSquare, FaCircle, FaFont, FaExpand } from 'react-icons/fa';
 
 const Whiteboard = () => {
   const [elements, setElements] = useState([]);
-  const [draggingElement, setDraggingElement] = useState(null);
+  const [selectedId, setSelectedId] = useState(null);
 
-  const addElement = (type) => {
+  const stageRef = useRef(null);
+
+  const handleAddRectangle = () => {
     const newElement = {
-      id: Date.now(),
-      type,
+      type: 'rectangle',
       x: 100,
       y: 100,
+      width: 100,
+      height: 60,
+      fill: 'blue',
     };
     setElements([...elements, newElement]);
   };
 
-  const handleDragStart = (event, element) => {
-    setDraggingElement(element);
+  const handleAddCircle = () => {
+    const newElement = {
+      type: 'circle',
+      x: 100,
+      y: 100,
+      radius: 40,
+      fill: 'red',
+    };
+    setElements([...elements, newElement]);
   };
 
-  const handleDragEnd = () => {
-    setDraggingElement(null);
+  const handleAddText = () => {
+    const newElement = {
+      type: 'text',
+      x: 100,
+      y: 100,
+      text: 'Text',
+      fontSize: 16,
+      fill: 'black',
+    };
+    setElements([...elements, newElement]);
   };
 
-  const handleDrag = (event, element) => {
-    if (draggingElement === element) {
-      const updatedElement = {
-        ...element,
-        x: element.x + event.movementX,
-        y: element.y + event.movementY,
-      };
-      setElements(elements.map((el) => (el.id === element.id ? updatedElement : el)));
+  const checkDeselect = (e) => {
+    if (e.target === e.target.getStage()) {
+      setSelectedId(null);
     }
   };
 
+  const handleSelect = (e, id) => {
+    e.cancelBubble = true;
+    setSelectedId(id);
+  };
+
+  const handleDragEnd = (e, index) => {
+    const updatedElements = [...elements];
+    updatedElements[index] = {
+      ...updatedElements[index],
+      x: e.target.x(),
+      y: e.target.y(),
+    };
+    setElements(updatedElements);
+  };
+
+  const handleTransformEnd = (e, index) => {
+    const updatedElements = [...elements];
+    const node = stageRef.current.findOne(`#${index}`);
+    const scaleX = node.scaleX();
+    const scaleY = node.scaleY();
+
+    updatedElements[index] = {
+      ...updatedElements[index],
+      x: node.x(),
+      y: node.y(),
+      width: node.width() * scaleX,
+      height: node.height() * scaleY,
+    };
+    setElements(updatedElements);
+  };
+
   return (
-    <div className="relative bg-white h-screen">
-      {elements.map((element) => (
-        <motion.div
-          key={element.id}
-          className="absolute cursor-pointer"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          drag
-          dragElastic={0}
-          onDragStart={(event) => handleDragStart(event, element)}
-          onDragEnd={handleDragEnd}
-          onDrag={(event) => handleDrag(event, element)}
-          style={{
-            left: element.x,
-            top: element.y,
-          }}
-        >
-          {element.type === 'rectangle' && (
-            <div className="w-20 h-12 bg-blue-500 rounded"></div>
-          )}
-          {element.type === 'circle' && (
-            <div className="w-12 h-12 bg-red-500 rounded-full"></div>
-          )}
-          {element.type === 'text' && (
-            <div className="text-black font-semibold">Text</div>
-          )}
-        </motion.div>
-      ))}
-      <div className="absolute bottom-4 left-4 space-x-2">
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={() => addElement('rectangle')}
-        >
-          Add Rectangle
+    <div>
+      <div className="toolbar">
+        <button onClick={handleAddRectangle} className="toolbar-button">
+          <FaSquare />
         </button>
-        <button
-          className="bg-red-500 text-white px-4 py-2 rounded"
-          onClick={() => addElement('circle')}
-        >
-          Add Circle
+        <button onClick={handleAddCircle} className="toolbar-button">
+          <FaCircle />
         </button>
-        <button
-          className="bg-gray-500 text-white px-4 py-2 rounded"
-          onClick={() => addElement('text')}
-        >
-          Add Text
+        <button onClick={handleAddText} className="toolbar-button">
+          <FaFont />
+        </button>
+        <button onClick={handleAddText} className="toolbar-button">
+          <FaExpand />
         </button>
       </div>
+      <Stage
+        width={window.innerWidth - 100}
+        height={window.innerHeight - 200}
+        onClick={checkDeselect}
+        ref={stageRef}
+      >
+        <Layer>
+          {elements.map((element, index) => {
+            if (element.type === 'rectangle') {
+              return (
+                <Rect
+                  key={index}
+                  id={index}
+                  x={element.x}
+                  y={element.y}
+                  width={element.width}
+                  height={element.height}
+                  fill={element.fill}
+                  draggable
+                  onDragEnd={(e) => handleDragEnd(e, index)}
+                  onClick={(e) => handleSelect(e, index)}
+                />
+              );
+            } else if (element.type === 'circle') {
+              return (
+                <Circle
+                  key={index}
+                  id={index}
+                  x={element.x}
+                  y={element.y}
+                  radius={element.radius}
+                  fill={element.fill}
+                  draggable
+                  onDragEnd={(e) => handleDragEnd(e, index)}
+                  onClick={(e) => handleSelect(e, index)}
+                />
+              );
+            } else if (element.type === 'text') {
+              return (
+                <Text
+                  key={index}
+                  id={index}
+                  x={element.x}
+                  y={element.y}
+                  text={element.text}
+                  fontSize={element.fontSize}
+                  fill={element.fill}
+                  draggable
+                  onDragEnd={(e) => handleDragEnd(e, index)}
+                  onClick={(e) => handleSelect(e, index)}
+                  onTransformEnd={(e) => handleTransformEnd(e, index)}
+                />
+              );
+            }
+            return null;
+          })}
+        </Layer>
+      </Stage>
     </div>
   );
 };
