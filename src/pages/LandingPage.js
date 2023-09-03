@@ -70,7 +70,7 @@ const LandingPage = () => {
             Welcome to Note Craft
           </motion.h1>
           <p className={`text-lg mb-8 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-            Your ultimate note-taking and collaboration platform.
+          Your all-in-one platform for notes, projects, diagrams, sticky notes, and more. Stay organized and boost productivity with Note Craft.
           </p>
           <div className="absolute bottom-0 left-0 right-0 flex justify-center items-center">
         {avatarImages.map((avatar, index) => (
