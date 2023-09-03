@@ -9,6 +9,7 @@ import Notebook from "./pages/Notebook";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./components/projects/ProjectDetails";
 import Whiteboard from "./pages/Whiteboard";
+import Diagram from "./pages/Diagram";
 
 const backgroundStyle = {
   background: `linear-gradient(45deg, #FF6B6B, #FFE66D, #8A3AB9)`,
@@ -35,6 +36,7 @@ function App() {
           <Route path="/projects" element={<Projects/>} exact/>
           <Route path="/project/:projectId" element={<ProjectDetail />} />
           <Route path="/whiteboard" element={<Whiteboard />} />
+          <Route path="/diagram" element={<Diagram />} />
         </Routes>
       </BrowserRouter>
     </div>
