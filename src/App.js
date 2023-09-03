@@ -8,6 +8,7 @@ import TodoList from "./pages/ToDoList";
 import Notebook from "./pages/Notebook";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./components/projects/ProjectDetails";
+import Whiteboard from "./pages/Whiteboard";
 
 const backgroundStyle = {
   background: `linear-gradient(45deg, #FF6B6B, #FFE66D, #8A3AB9)`,
@@ -33,6 +34,7 @@ function App() {
           <Route path="/notebooks" element={<Notebook/>} exact/>
           <Route path="/projects" element={<Projects/>} exact/>
           <Route path="/project/:projectId" element={<ProjectDetail />} />
+          <Route path="/whiteboard" element={<Whiteboard />} />
         </Routes>
       </BrowserRouter>
     </div>
