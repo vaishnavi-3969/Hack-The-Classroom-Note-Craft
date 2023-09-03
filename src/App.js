@@ -10,6 +10,7 @@ import Projects from "./pages/Projects";
 import ProjectDetail from "./components/projects/ProjectDetails";
 import Whiteboard from "./pages/Whiteboard";
 import Diagram from "./pages/Diagram";
+import NotesTemplate from "./pages/NotesTemplate";
 
 const backgroundStyle = {
   background: `linear-gradient(45deg, #FF6B6B, #FFE66D, #8A3AB9)`,
@@ -37,6 +38,7 @@ function App() {
           <Route path="/project/:projectId" element={<ProjectDetail />} />
           <Route path="/whiteboard" element={<Whiteboard />} />
           <Route path="/diagram" element={<Diagram />} />
+          <Route path="/notes_template_library" element={<NotesTemplate />} />
         </Routes>
       </BrowserRouter>
     </div>
