@@ -72,6 +72,19 @@ const LandingPage = () => {
           <p className={`text-lg mb-8 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
             Your ultimate note-taking and collaboration platform.
           </p>
+          <div className="absolute bottom-0 left-0 right-0 flex justify-center items-center">
+        {avatarImages.map((avatar, index) => (
+          <motion.img
+            key={index}
+            src={avatar}
+            alt="Avatar"
+            className="w-12 h-12 rounded-full shadow-lg border-4 border-white m-2"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: index * 0.2 }}
+          />
+        ))}
+      </div>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -113,20 +126,6 @@ const LandingPage = () => {
             </motion.div>
           ))}
         </div>
-      </div>
-
-      <div className="absolute bottom-0 left-0 right-0 flex justify-center items-center">
-        {avatarImages.map((avatar, index) => (
-          <motion.img
-            key={index}
-            src={avatar}
-            alt="Avatar"
-            className="w-12 h-12 rounded-full shadow-lg border-4 border-white m-2"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: index * 0.2 }}
-          />
-        ))}
       </div>
     </div>
   );
