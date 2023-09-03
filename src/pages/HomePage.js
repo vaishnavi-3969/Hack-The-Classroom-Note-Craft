@@ -15,10 +15,10 @@ const HomePage = () => {
   const features = [
     { icon: <FaBook />, text: 'Notebooks', link: '/notebooks' },
     { icon: <FaProjectDiagram />, text: 'Projects', link: '/projects' },
-    { icon: <FaPencilAlt />, text: 'Diagrams', link: '/projects' },
+    { icon: <FaPencilAlt />, text: 'Diagrams', link: '/diagram' },
     { icon: <FaBookOpen />, text: 'Sticky Notes', link: '/sticky_notes' },
-    { icon: <FaChalkboard />, text: 'Whiteboard', link: '/projects' },
-    { icon: <FaBoxes />, text: 'Notes Template Library', link: '/projects' },
+    { icon: <FaChalkboard />, text: 'Whiteboard', link: '/whiteboard' },
+    { icon: <FaBoxes />, text: 'Notes Template Library', link: '/notes_template_library' },
     { icon: <FaCheck />, text: 'To Dos', link: '/todo' },
   ];
 
