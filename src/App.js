@@ -21,9 +21,9 @@ function App() {
   return (
     <div style={backgroundStyle} className="min-h-screen text-gray-900 transition duration-500 ease-in-out relative p-10">
       <BrowserRouter>
-     {
-        isAuthenticated && <Navbar/>
-     }
+        {
+          isAuthenticated && <Navbar />
+        }
         <Routes>
           <Route
             path="/"
@@ -31,10 +31,10 @@ function App() {
             exact
           />
           <Route path="/homepage" element={<HomePage />} exact />
-          <Route path="sticky_notes" element={<StickyNotes/>} exact/>
-          <Route path="/todo" element={<TodoList/>} exact/>
-          <Route path="/notebooks" element={<Notebook/>} exact/>
-          <Route path="/projects" element={<Projects/>} exact/>
+          <Route path="sticky_notes" element={<StickyNotes />} exact />
+          <Route path="/todo" element={<TodoList />} exact />
+          <Route path="/notebooks" element={<Notebook />} exact />
+          <Route path="/projects" element={<Projects />} exact />
           <Route path="/project/:projectId" element={<ProjectDetail />} />
           <Route path="/whiteboard" element={<Whiteboard />} />
           <Route path="/diagram" element={<Diagram />} />
